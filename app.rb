@@ -36,7 +36,7 @@ post '/send' do
   phone_number = "#{params['phone_number'].gsub(/\D/,'')}"
 
   if phone_number.length != 10
-    erb :error
+    redirect to ('/error')
   end
 
   @client = Client.find_or_create_by(phone_number: phone_number)
@@ -58,11 +58,11 @@ post '/send' do
       puts message.sid
     rescue Twilio::REST::TwilioError => e
       puts e.message
-      erb :error
+      redirect to ('/error')
     end
     redirect to ("/clients/#{@client.id}")
   else
-    erb :error
+    redirect to ('/error')
   end
 end
 
@@ -79,4 +79,8 @@ post '/receive' do
   if @client.present?
     @message = Message.create(text: params['Body'], client_id: @client.id, inbound: true)
   end
+end
+
+get '/error' do
+  erb :error
 end
