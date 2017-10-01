@@ -1,19 +1,22 @@
-#CNYCN Texting Demo App
+# CNYCN Texting Demo App
 
-##Setup
+## Setup
 
 Run the following commands:
 
 `gem install bundler`
+
 `bundle`
+
 `bundle exec rake db:migrate`
+
 `cp .env.example .env`
 
 Then add Twilio credentials to the `.env` file
 
-##Run
+## Run
 
 `ruby app.rb`
 
-##Live demo
+## Live demo
 https://cnycn-texting-demo.herokuapp.com/
