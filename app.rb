@@ -28,5 +28,6 @@ post '/send' do
 end
 
 post '/receive' do
-  binding.pry
+  puts params['From']
+  puts params['Body']
 end
