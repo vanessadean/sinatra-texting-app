@@ -1,0 +1,9 @@
+<h2>Messages with <%= @client.first_name %> <%= @client.last_name %></h2>
+
+<% @messages.each do |message| %>
+  <ul>
+    <li><%= message.direction %>: <%= message.text %></li>
+  </ul>
+<% end %>
+
+<p><a href="/">Home</a></p>

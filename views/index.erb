@@ -1,6 +1,17 @@
+<h1>CNYCN Messaging</h1>
+
 <div class="id-form">
-  <p>Please enter your last name in order verify your identity</p>
+  <p>Fill out the form to send a message</p>
   <form action="/send" method="post">
+    <div class="form-group">
+      <label for="first-name">First Name</label>
+      <input type="text" name="first_name" class="form-control" id="first-name"/>
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last Name</label>
+      <input type="text" name="last_name" class="form-control" id="last-name"/>
+    </div>
+
     <div class="form-group">
       <label for="phone-number">Phone Number</label>
       <input type="text" name="phone_number" class="form-control" id="phone-number"/>
@@ -14,3 +25,10 @@
     </div>
   </form>
 </div>
+
+<h2>Client Messages:</h2>
+  <ul>
+  <% @clients.each do |client| %>
+    <li><a href="/clients/<%= client.id %>"><%= client.first_name %> <%= client.last_name %></a></li>
+  <% end %>
+  </ul>
