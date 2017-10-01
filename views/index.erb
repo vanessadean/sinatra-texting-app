@@ -1,34 +1,37 @@
-<h1>CNYCN Messaging</h1>
+<div class="row">
+  <div class="id-form col-sm-6">
+    <h1>CNYCN Messaging</h1>
+    <p>Fill out the form to send a message</p>
+    <form action="/send" method="post">
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input type="text" name="first_name" class="form-control" id="first-name"/>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" name="last_name" class="form-control" id="last-name"/>
+      </div>
 
-<div class="id-form">
-  <p>Fill out the form to send a message</p>
-  <form action="/send" method="post">
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" name="first_name" class="form-control" id="first-name"/>
-    </div>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" name="last_name" class="form-control" id="last-name"/>
-    </div>
+      <div class="form-group">
+        <label for="phone-number">Phone Number</label>
+        <input type="text" name="phone_number" class="form-control" id="phone-number"/>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea name="message" class="form-control" id="message"></textarea>
+      </div>
+      <div class="form-group">
+        <button class="btn align-right">Submit</button>
+      </div>
+    </form>
+  </div>
 
-    <div class="form-group">
-      <label for="phone-number">Phone Number</label>
-      <input type="text" name="phone_number" class="form-control" id="phone-number"/>
-    </div>
-    <div class="form-group">
-      <label for="message">Message</label>
-      <input type="text" name="message" class="form-control" id="message"/>
-    </div>
-    <div class="form-group">
-      <button class="btn align-right">Submit</button>
-    </div>
-  </form>
+  <div class="id-form col-sm-6">
+    <h2>Continue a Conversation</h2>
+    <ul>
+    <% @clients.each do |client| %>
+      <li><a href="/clients/<%= client.id %>"><%= client.first_name %> <%= client.last_name %> - <%= client.formatted_phone %></a></li>
+    <% end %>
+    </ul>
+  <div class="id-form col-sm-6">
 </div>
-
-<h2>Client Messages:</h2>
-  <ul>
-  <% @clients.each do |client| %>
-    <li><a href="/clients/<%= client.id %>"><%= client.first_name %> <%= client.last_name %></a></li>
-  <% end %>
-  </ul>

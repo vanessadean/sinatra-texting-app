@@ -4,7 +4,10 @@ require_relative './models/message'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
+set :public_folder, 'public'
+
 configure :development do
+  enable :reloader
   set :database, {adapter: "sqlite3", database: "cnycn.sqlite3"}
 end
 
@@ -30,9 +33,16 @@ post '/send' do
   account_sid = ENV['TWILIO_SID'] # Your Account SID from www.twilio.com/console
   auth_token = ENV['TWILIO_AUTH_TOKEN']   # Your Auth Token from www.twilio.com/console
 
-  phone_number = "+1#{params['phone_number'].gsub(/[()-]/,'')}"
+  phone_number = "#{params['phone_number'].gsub(/\D/,'')}"
+
+  if phone_number.length != 10
+    erb :error
+  end
+
   @client = Client.find_or_create_by(phone_number: phone_number)
-  @client.update_attributes(first_name: params['first_name'], last_name: params['last_name'])
+  @client.first_name = params['first_name'] if @client.first_name.blank?
+  @client.last_name =  params['last_name'] if @client.last_name.blank?
+
   if @client.save
     @message = Message.new(text: params['message'], client_id: @client.id, outbound: true)
   end
@@ -42,7 +52,7 @@ post '/send' do
       @twilio = Twilio::REST::Client.new account_sid, auth_token
       message = @twilio.messages.create(
           body: params['message'],
-          to: phone_number,
+          to: "+1#{@client.phone_number}",
           from: '+13479411418')  # Replace with your Twilio number
 
       puts message.sid
@@ -64,9 +74,8 @@ get ('/clients/:client_id') do
 end
 
 post '/receive' do
-  puts params['From']
-  puts params['Body']
-  @client = Client.find_by(phone_number: params['From'])
+  phone_number = params['From'].gsub('+1','')
+  @client = Client.find_by(phone_number: phone_number)
   if @client.present?
     @message = Message.create(text: params['Body'], client_id: @client.id, inbound: true)
   end

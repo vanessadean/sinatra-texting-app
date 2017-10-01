@@ -1,0 +1,90 @@
+body {
+  font-size: 14px;
+}
+
+.skinny {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h5 {
+  color: #0b7e85;
+  padding-bottom: 15px;
+}
+
+.logo {
+  width: 30px;
+}
+
+.navbar {
+  height: 50px;
+  color: #0b7e85;
+  font-weight: bold;
+}
+
+.subnav {
+  height: 50px;
+  background-color: #0b7e85;
+  color: #fff;
+  font-size: 18px;
+  padding-left: 15px;
+  padding-top: 12px;
+  /*font-weight: bold;*/
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #0b7e85;
+  color: white;
+}
+
+.help {
+  font-size: 8px;
+  padding: 10px 20px;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+.id-form {
+  padding-top: 25px;
+  padding-left: 15px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.status {
+  padding-left: 35px;
+  margin-bottom: 50px;
+}
+
+.status .row {
+  padding-top: 25px;
+}
+
+.align-right {
+  position: absolute;
+  right: 16px;
+}
+
+.submit-button {
+  margin-bottom: 60px;
+}
+
+.status ul {
+  padding-left: 18px;
+}
+
+.status li {
+  margin-bottom: 20px;
+}
+
+.go-back {
+  font-weight: bold;
+  color: #0b7e85;
+}

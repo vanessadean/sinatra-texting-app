@@ -1,9 +1,28 @@
-<h2>Messages with <%= @client.first_name %> <%= @client.last_name %></h2>
+<div class="id-form row">
+  <div class="col-sm-6">
+    <h3>Messages with <%= @client.first_name %> <%= @client.last_name %></h3>
 
-<% @messages.each do |message| %>
-  <ul>
-    <li><%= message.direction %>: <%= message.text %></li>
-  </ul>
-<% end %>
+    <% @messages.each do |message| %>
+      <ul>
+        <li><%= message.direction %>: <%= message.text %></li>
+      </ul>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <h3>Send Another Message</h3>
+    <form action="/send" method="post">
+      <input type="hidden" name="first_name" class="form-control" id="first-name" value="<%= @client.first_name %>"/>
+      <input type="hidden" name="last_name" class="form-control" id="last-name" value="<%= @client.last_name %>"/>
+      <input type="hidden" name="phone_number" class="form-control" id="phone-number" value="<%= @client.phone_number %>"/>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea name="message" class="form-control" id="message"></textarea>
+      </div>
+      <div class="form-group">
+        <button class="btn align-right">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <p><a href="/">Home</a></p>

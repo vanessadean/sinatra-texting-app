@@ -2,4 +2,9 @@ require_relative '../config/environment.rb'
 
 class Client < ActiveRecord::Base
   has_many :messages
+
+  def formatted_phone
+    digits = phone_number.split('')
+    "(#{digits[0..2].join('')}) #{digits[3..5].join('')}-#{digits[6..10].join('')}"
+  end
 end
