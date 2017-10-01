@@ -11,10 +11,10 @@ gem "tux"
 gem "dotenv"
 gem "thin"
 gem "twilio-ruby"
+gem "pry"
 
 group :development do
   gem "sinatra-reloader"
-  gem "pry"
   gem "sqlite3"
 end
 
