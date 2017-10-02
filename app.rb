@@ -51,9 +51,10 @@ post '/send' do
     begin
       @twilio = Twilio::REST::Client.new account_sid, auth_token
       message = @twilio.messages.create(
-          body: params['message'],
-          to: "+1#{@client.phone_number}",
-          from: '+19178180461')  # Replace with your Twilio number
+        body: params['message'],
+        to: "+1#{@client.phone_number}",
+        from: ENV['TWILIO_NUMBER'] # Replace with your Twilio number
+      )
 
       puts message.sid
     rescue Twilio::REST::TwilioError => e

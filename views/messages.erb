@@ -1,12 +1,13 @@
 <div class="id-form row">
   <div class="col-sm-6">
     <h3>Messages with <%= @client.first_name %> <%= @client.last_name %></h3>
-
-    <% @messages.each do |message| %>
-      <ul>
-        <li><%= message.direction %>: <%= message.text %></li>
-      </ul>
-    <% end %>
+    <div class="messages">
+      <% @messages.each do |message| %>
+        <ul>
+          <li><span class="sender"><%= message.sender %></span>: <%= message.text %></li>
+        </ul>
+      <% end %>
+    </div>
   </div>
   <div class="col-sm-6">
     <h3>Send Another Message</h3>

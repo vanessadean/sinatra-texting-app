@@ -2,6 +2,8 @@ require_relative '../config/environment.rb'
 
 class Client < ActiveRecord::Base
   has_many :messages
+  validates :first_name, presence: true
+  validates :phone_number, presence: true
 
   def formatted_phone
     digits = phone_number.split('')
