@@ -8,7 +8,7 @@ set :public_folder, 'public'
 
 configure :development do
   enable :reloader
-  set :database, {adapter: "sqlite3", database: "cnycn.sqlite3"}
+  set :database, { adapter: "sqlite3", database: "./db/cnycn.sqlite3" }
 end
 
 configure :production do
