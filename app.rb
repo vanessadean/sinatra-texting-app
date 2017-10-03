@@ -4,6 +4,10 @@ require_relative './models/message'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
+use Rack::Auth::Basic, "Protected Area" do |username, password|
+  username == ENV['AUTH_USERNAME'] && password == ENV['AUTH_PASSWORD']
+end
+
 set :public_folder, 'public'
 
 configure :development do
