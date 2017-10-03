@@ -4,8 +4,17 @@ require_relative './models/message'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-use Rack::Auth::Basic, "Protected Area" do |username, password|
-  username == ENV['AUTH_USERNAME'] && password == ENV['AUTH_PASSWORD']
+helpers do
+  def protected!
+    return if authorized?
+    headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+    halt 401, "Not authorized\n"
+  end
+
+  def authorized?
+    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+    @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD']]
+  end
 end
 
 set :public_folder, 'public'
@@ -29,6 +38,7 @@ configure :production do
 end
 
 get '/' do
+  protected!
   @clients = Client.all
   erb :index
 end
@@ -72,6 +82,7 @@ post '/send' do
 end
 
 get ('/clients/:client_id') do
+  protected!
   @client = Client.find(params[:client_id])
   @messages = @client.messages.order(created_at: :asc)
 
