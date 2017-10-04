@@ -45,11 +45,6 @@ a {
   font-weight: bold;
 }
 
-.align-right {
-  position: absolute;
-  right: 16px;
-}
-
 .submit-button {
   margin-bottom: 60px;
 }
