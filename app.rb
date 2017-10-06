@@ -1,6 +1,5 @@
 require_relative './config/environment'
-require_relative './models/client'
-require_relative './models/message'
+
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
@@ -13,28 +12,9 @@ helpers do
 
   def authorized?
     @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-    @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD']]
+    @auth.provided? && @auth.basic? && @auth.credentials &&
+    @auth.credentials == [ENV['AUTH_USERNAME'], ENV['AUTH_PASSWORD']]
   end
-end
-
-set :public_folder, 'public'
-
-configure :development do
-  enable :reloader
-  set :database, { adapter: "sqlite3", database: "./db/cnycn.sqlite3" }
-end
-
-configure :production do
- db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/database')
-
- ActiveRecord::Base.establish_connection(
-   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-   :host     => db.host,
-   :username => db.user,
-   :password => db.password,
-   :database => db.path[1..-1],
-   :encoding => 'utf8'
- )
 end
 
 get '/' do
@@ -44,9 +24,10 @@ get '/' do
 end
 
 post '/send' do
-  account_sid = ENV['TWILIO_SID'] # Your Account SID from www.twilio.com/console
-  auth_token = ENV['TWILIO_AUTH_TOKEN']   # Your Auth Token from www.twilio.com/console
+  account_sid = ENV['TWILIO_SID'] # Your account SID from www.twilio.com/console
+  auth_token = ENV['TWILIO_AUTH_TOKEN'] # Your auth Token from www.twilio.com/console
 
+  # scrub out non-digit characters
   phone_number = "#{params['phone_number'].gsub(/\D/,'')}"
 
   if phone_number.length != 10
@@ -55,7 +36,7 @@ post '/send' do
 
   @client = Client.find_or_create_by(phone_number: phone_number)
   @client.first_name = params['first_name'] if @client.first_name.blank?
-  @client.last_name =  params['last_name'] if @client.last_name.blank?
+  @client.last_name = params['last_name'] if @client.last_name.blank?
 
   if @client.save
     @message = Message.new(text: params['message'], client_id: @client.id, outbound: true)
@@ -63,14 +44,13 @@ post '/send' do
 
   if @message.save
     begin
-      @twilio = Twilio::REST::Client.new account_sid, auth_token
+      @twilio = Twilio::REST::Client.new(account_sid, auth_token)
       message = @twilio.messages.create(
         body: params['message'],
         to: "+1#{@client.phone_number}",
-        from: ENV['TWILIO_NUMBER'] # Replace with your Twilio number
+        from: ENV['TWILIO_NUMBER'] # Your Twilio number
       )
-
-      puts message.sid
+      puts "Message sent from #{message.sid}"
     rescue Twilio::REST::TwilioError => e
       puts e.message
       redirect to ('/error')
@@ -99,4 +79,24 @@ end
 
 get '/error' do
   erb :error
+end
+
+#settings
+set :public_folder, 'public'
+
+configure :development do
+  set :database, { adapter: "sqlite3", database: "./db/cnycn.sqlite3" }
+end
+
+configure :production do
+ db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/database')
+
+ ActiveRecord::Base.establish_connection(
+   :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+   :host     => db.host,
+   :username => db.user,
+   :password => db.password,
+   :database => db.path[1..-1],
+   :encoding => 'utf8'
+ )
 end
