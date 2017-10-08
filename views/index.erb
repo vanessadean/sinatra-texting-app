@@ -30,7 +30,7 @@
     <h2>Continue a Conversation</h2>
     <ul>
     <% @clients.each do |client| %>
-      <li>
+      <li id="<%= client.id %>">
         <a href="/clients/<%= client.id %>"><%= client.first_name %> <%= client.last_name %> - <%= client.formatted_phone %></a>
         <% if client.unread_messages %>
           <span class="new-messages">New Messages</span>
@@ -40,3 +40,21 @@
     </ul>
   </div>
 </div>
+
+<script>
+  setInterval(function(){
+    var clients = <%= @clients.map { |client| client.attributes }.to_json %>;
+    for (i = 0; i < clients.length; i++) {
+      var clientId = clients[i]['id'];
+      $.ajax({
+        url: '/clients/' + clientId + '/new_messages',
+        success: function(response) {
+          var messages = JSON.parse(response)['messages'];
+          if (messages && messages.length > 0) {
+            $('#' + clientId).append('<span class="new-messages">New Messages</span>');
+          }
+        }
+      });
+    }
+  }, 30000);
+</script>
