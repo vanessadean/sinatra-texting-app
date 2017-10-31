@@ -19,7 +19,7 @@ end
 
 get '/' do
   protected!
-  @clients = Client.all.order(last_name: :desc)
+  @clients = Client.all.order(last_name: :asc)
   erb :index
 end
 
