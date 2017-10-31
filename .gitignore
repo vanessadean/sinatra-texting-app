@@ -3,4 +3,4 @@
 *.db
 
 .env
-db/cnycn.sqlite3
+db/sqlite3

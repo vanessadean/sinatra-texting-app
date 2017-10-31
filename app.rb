@@ -1,6 +1,13 @@
-require_relative './config/environment'
+require 'dotenv'
+Dotenv.load
+
+require 'pry'
+require 'twilio-ruby'
+require_relative 'models/client'
+require_relative 'models/message'
 
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'sinatra/reloader' if development?
 
 helpers do
@@ -98,7 +105,7 @@ end
 set :public_folder, 'public'
 
 configure :development do
-  set :database, { adapter: "sqlite3", database: "./db/cnycn.sqlite3" }
+  set :database, { adapter: "sqlite3", database: "./db/sqlite3" }
 end
 
 configure :production do

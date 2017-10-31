@@ -1,4 +1,4 @@
-require_relative '../config/environment.rb'
+require 'sinatra/activerecord'
 
 class Client < ActiveRecord::Base
   has_many :messages

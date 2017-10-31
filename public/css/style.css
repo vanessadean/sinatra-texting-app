@@ -2,9 +2,31 @@ body {
   font-size: 14px;
 }
 
-.sender {
-  font-weight: bold;
+h1,
+h2,
+h3,
+h4,
+h5 {
   color: #0b7e85;
+  padding-bottom: 15px;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+button {
+  background-color: #0b7e85;
+  color: white;
 }
 
 .messages {
@@ -21,26 +43,12 @@ body {
   margin-top: 10px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+.sender {
+  font-weight: bold;
   color: #0b7e85;
-  padding-bottom: 15px;
 }
 
-button {
-  background-color: #0b7e85;
-  color: white;
-}
-
-a {
-  color: black;
-  text-decoration: underline;
-}
-
-.id-form {
+.message-form {
   padding-top: 25px;
   padding-left: 15px;
 }
@@ -52,14 +60,6 @@ a {
 
 .client-list {
   margin-bottom: 10px;
-}
-
-li {
-  list-style: none;
-}
-
-ul {
-  padding-left: 0;
 }
 
 .new-messages {
