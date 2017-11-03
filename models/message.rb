@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
   validates :client_id, presence: true
 
   def sender
-    outbound ? "CNYCN" : client.first_name
+    outbound ? "App" : client.first_name
   end
 
   def styled_time
