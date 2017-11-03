@@ -20,4 +20,4 @@ Then add Twilio credentials to the `.env` file
 
 ## Live demo
 
-https://cnycn-texting-demo.herokuapp.com/
+https://texting-app-demo.herokuapp.com/
