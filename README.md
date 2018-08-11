@@ -1,6 +1,6 @@
-# Text Message App
+# Text Messaging App
 
-A version of this app was built for a [Delta.NYC](https://www.civichalllabs.org/probonotech/) pro bono collaboration with the [Center for NYC Neighborhoods](https://cnycn.org/).
+A version of this app was built for a [Delta.NYC](https://www.civichalllabs.org/probonotech/) pro bono collaboration with the [Center for NYC Neighborhoods](https://cnycn.org/) to help the center stay in touch with clients.
 
 ## Setup
 
