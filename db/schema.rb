@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008204220) do
+ActiveRecord::Schema.define(version: 2018_08_12_015418) do
 
   create_table "clients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "phone_number"
+    t.datetime "created_at"
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "text"
     t.integer "client_id"
-    t.boolean "outbound"
-    t.boolean "inbound"
     t.datetime "created_at"
     t.datetime "read_at"
+    t.boolean "outbound"
   end
 
 end

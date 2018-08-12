@@ -1,3 +1,7 @@
-require './app'
+require './app/controllers/app'
+require './app/controllers/clients_controller'
+require './app/controllers/messages_controller'
 
-run Sinatra::Application
+use MessagesController
+use ClientsController
+run App

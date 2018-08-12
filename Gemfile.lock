@@ -1,15 +1,15 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (5.1.4)
-      activesupport (= 5.1.4)
-    activerecord (5.1.4)
-      activemodel (= 5.1.4)
-      activesupport (= 5.1.4)
-      arel (~> 8.0)
-    activesupport (5.1.4)
+    activemodel (5.2.1)
+      activesupport (= 5.2.1)
+    activerecord (5.2.1)
+      activemodel (= 5.2.1)
+      activesupport (= 5.2.1)
+      arel (>= 9.0)
+    activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (~> 0.7)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (8.0.0)
@@ -18,11 +18,13 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     daemons (1.2.4)
+    diff-lcs (1.3)
     dotenv (2.2.1)
     eventmachine (1.2.5)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
-    i18n (0.8.6)
+    i18n (1.1.0)
+      concurrent-ruby (~> 1.0)
     jwt (1.5.6)
     libxml-ruby (3.0.0)
     method_source (0.9.0)
@@ -48,6 +50,19 @@ GEM
       rack (>= 1.0)
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
     sinatra (2.0.3)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -82,7 +97,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       libxml-ruby (>= 2.0, < 4.0)
-    tzinfo (1.2.3)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
 
 PLATFORMS
@@ -92,7 +107,9 @@ DEPENDENCIES
   dotenv
   pg
   pry
+  rack-test
   rake
+  rspec
   sinatra
   sinatra-activerecord
   sinatra-reloader
@@ -102,4 +119,4 @@ DEPENDENCIES
   twilio-ruby
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.3
