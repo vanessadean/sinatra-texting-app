@@ -11,10 +11,10 @@ class Message < ActiveRecord::Base
 
   def styled_time
     time = Time.now.dst? ? created_at + 1.hour : created_at
-    time.in_time_zone('EST').strftime('%l:%M %P')
+    time.in_time_zone(ENV['TIME_ZONE']).strftime('%l:%M %P')
   end
 
   def date
-    created_at.in_time_zone('EST').strftime('%B %-d, %Y')
+    created_at.in_time_zone(ENV['TIME_ZONE']).strftime('%B %-d, %Y')
   end
 end
