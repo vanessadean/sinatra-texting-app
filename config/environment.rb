@@ -3,17 +3,21 @@ Bundler.require
 
 Dotenv.load
 
-require_relative '../models/client'
-require_relative '../models/message'
+require_relative '../app/models/client'
+require_relative '../app/models/message'
 
 configure do
   set :root, File.dirname(__FILE__)
   set :public_folder, 'public'
-  set :views, 'views'
+  set :views, 'app/views'
 end
 
 configure :development do
-  set :database, { adapter: 'sqlite3', database: './db/sqlite3' }
+  set :database, { adapter: 'sqlite3', database: '../db/sqlite3' }
+end
+
+configure :test do
+  set :database, { adapter: 'sqlite3', database: '../db/sqlite3_test' }
 end
 
 configure :production do
