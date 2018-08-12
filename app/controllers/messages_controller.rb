@@ -43,7 +43,7 @@ class MessagesController < App
     phone_number = params['From'].gsub('+1','')
     @client = Client.find_by(phone_number: phone_number)
     if @client.present?
-      @message = Message.create(text: params['Body'], client_id: @client.id, inbound: true)
+      @message = Message.create(text: params['Body'], client_id: @client.id, outbound: false)
     end
   end
 
