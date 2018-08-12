@@ -19,6 +19,8 @@ require 'rspec'
 
 ENV['RACK_ENV'] = 'test'
 
+Dir['./spec/support/**/*.rb'].each { |f| require f }
+
 require File.expand_path '../../app/controllers/app.rb', __FILE__
 
 module RSpecMixin

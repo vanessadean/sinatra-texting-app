@@ -5,7 +5,7 @@ class ClientsController < App
     protected!
     @client = Client.find(params[:client_id])
     @client.messages.where(read_at: nil).update_all(read_at: Time.now)
-    @messages = @client.messages.order(created_at: :asc).group_by { |m| m.date }
+    @messages = @client.messages.order(created_at: :asc).group_by { |m| m.styled_date }
 
     erb :messages
   end
