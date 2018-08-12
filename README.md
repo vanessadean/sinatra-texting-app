@@ -18,7 +18,7 @@ Then add Twilio credentials to the `.env` file
 
 ## Run
 
-`ruby app.rb`
+`rackup -p 4567`
 
 ## Demo link
 

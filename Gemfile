@@ -11,9 +11,9 @@ gem "tux"
 gem "dotenv"
 gem "thin"
 gem "twilio-ruby"
-gem "pry"
 
 group :development do
+  gem "pry"
   gem "sinatra-reloader"
   gem "sqlite3"
 end
