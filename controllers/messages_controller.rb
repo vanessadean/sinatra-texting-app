@@ -1,4 +1,4 @@
-require_relative "app"
+require_relative 'app'
 
 class MessagesController < App
   post '/send' do

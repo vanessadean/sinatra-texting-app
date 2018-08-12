@@ -1,11 +1,11 @@
-require_relative "../config/environment"
+require_relative '../config/environment'
 
 class App < Sinatra::Application
   helpers do
     def protected!
       return if authorized?
       headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
-      halt 401, "Not authorized\n"
+      halt 401, 'Not authorized\n'
     end
 
     def authorized?

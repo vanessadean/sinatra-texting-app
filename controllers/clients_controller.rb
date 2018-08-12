@@ -1,4 +1,4 @@
-require_relative "app"
+require_relative 'app'
 
 class ClientsController < App
   get ('/clients/:client_id') do
