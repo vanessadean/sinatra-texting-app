@@ -32,7 +32,7 @@
     <% @clients.each do |client| %>
       <li id="<%= client.id %>" class="client-list">
         <a href="/clients/<%= client.id %>"><%= client.first_name %> <%= client.last_name %> - <%= client.formatted_phone %></a>
-        <% if client.unread_messages %>
+        <% if client.unread_messages? %>
           <span class="new-messages">New Messages</span>
         <% else %>
           <span></span>

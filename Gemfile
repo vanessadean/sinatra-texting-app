@@ -13,7 +13,6 @@ gem 'thin'
 gem 'twilio-ruby'
 
 group :development do
-  gem 'pry'
   gem 'sinatra-reloader'
   gem 'sqlite3'
 end
@@ -21,6 +20,10 @@ end
 group :test do
   gem 'rack-test'
   gem 'rspec'
+end
+
+group :development, :test do
+  gem 'pry'
 end
 
 group :production do
