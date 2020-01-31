@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 2018_08_12_015418) do
   create_table "messages", force: :cascade do |t|
     t.text "text"
     t.integer "client_id"
+    t.boolean "outbound"
     t.datetime "created_at"
     t.datetime "read_at"
-    t.boolean "outbound"
   end
 
 end
