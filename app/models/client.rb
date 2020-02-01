@@ -1,7 +1,7 @@
 require 'sinatra/activerecord'
 
 class Client < ActiveRecord::Base
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   validates :first_name, presence: true
   validates :phone_number, presence: true, format: { without: /\D/ }, length: { minimum: 10, maximum: 10 }

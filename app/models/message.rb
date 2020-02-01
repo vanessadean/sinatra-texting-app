@@ -2,8 +2,7 @@ require 'sinatra/activerecord'
 
 class Message < ActiveRecord::Base
   belongs_to :client
-  validates :text, presence: true
-  validates :client_id, presence: true
+  validates :text, :client_id, presence: true
 
   def sender
     outbound ? 'App' : client.first_name
