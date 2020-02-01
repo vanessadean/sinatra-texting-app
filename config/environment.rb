@@ -11,7 +11,6 @@ configure do
   set :public_folder, 'public'
   set :views, 'app/views'
   Time.zone = 'UTC'
-  ActiveRecord::Base.default_timezone = :utc
 end
 
 configure :development do
