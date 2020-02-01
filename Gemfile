@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+ruby '2.6.3'
 
 gem 'sinatra'
 gem 'sinatra-activerecord'
@@ -14,7 +14,6 @@ gem 'twilio-ruby'
 
 group :development do
   gem 'sinatra-reloader'
-  gem 'sqlite3'
 end
 
 group :test do
@@ -24,6 +23,7 @@ end
 
 group :development, :test do
   gem 'pry'
+  gem 'sqlite3'
 end
 
 group :production do
