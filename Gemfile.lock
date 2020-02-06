@@ -95,7 +95,7 @@ GEM
       ripl-multi_line (>= 0.2.4)
       ripl-rack (>= 0.2.0)
       sinatra (>= 1.2.1)
-    twilio-ruby (5.31.3)
+    twilio-ruby (5.31.4)
       faraday (~> 1.0.0)
       jwt (>= 1.5, <= 2.5)
       nokogiri (>= 1.6, < 2.0)
