@@ -2,14 +2,15 @@
 
 source 'https://rubygems.org'
 
-ruby '2.6.5'
+ruby '3.4.2'
 
+gem 'dotenv'
+gem 'puma'
+gem 'rake'
+gem 'rackup'
 gem 'sinatra'
 gem 'sinatra-activerecord'
-gem 'rake'
-gem 'tux'
-gem 'dotenv'
-gem 'thin'
+gem 'sqlite3'
 gem 'twilio-ruby'
 
 group :development do
@@ -22,10 +23,5 @@ group :test do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
+  gem 'pry'  
 end

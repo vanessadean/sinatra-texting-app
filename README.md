@@ -20,10 +20,6 @@ Then add Twilio credentials to the `.env` file
 
 `rackup -p 4567`
 
-## Demo link
-
-https://texting-app-demo.herokuapp.com/
-
 
 
 Copyright (c) 2018 Vanessa Dean
